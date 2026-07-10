@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Build files, entrypoints, repository instructions, CI
+> Evidence paths: `path/to/build/file`, `path/to/entrypoint`
 > Known gaps: List explicitly
 
 ## Purpose

@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Add entrypoints, symbols, tests, migrations, or runtime observations
+> Evidence paths: `path/to/entrypoint`, `path/to/service`, `path/to/test`
 > Known gaps: List explicitly
 
 ## Mental model

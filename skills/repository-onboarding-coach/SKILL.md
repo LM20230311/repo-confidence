@@ -137,6 +137,8 @@ Explicitly map:
 
 Use the templates in `assets/project-atlas-template/`. Copy only the sections needed by the repository. Default to `docs/project-atlas/` when the user authorizes documentation writes and the repository has no preferred location.
 
+Record repository-relative `Evidence paths` metadata on critical pages so freshness checks can map Git changes without guessing dependencies.
+
 Keep the index concise. Use progressive disclosure: overview first, detailed flow and entity pages second, exact code retrieval on demand.
 
 ## Teach a domain or flow
@@ -194,15 +196,16 @@ After implementation:
 
 ## Refresh an existing Atlas
 
-1. Read the Atlas verification commit.
-2. Compare it with current HEAD using Git diff and history.
-3. Map changed files and symbols to affected flows, entities, state maps, and invariants.
-4. Re-verify affected claims against current code and tests.
-5. Leave unaffected pages unchanged.
-6. Update verification metadata only after evidence is checked.
-7. Report pages that may be stale but cannot be verified.
+1. Run `scripts/atlas_freshness.py <repo> --atlas <atlas-path> --format json` for a deterministic candidate report.
+2. Read the Atlas verification commit and declared evidence paths.
+3. Compare candidate pages with current HEAD using Git diff, CodeGraph when available, and history.
+4. Map changed files and symbols to affected flows, entities, state maps, and invariants.
+5. Re-verify affected claims against current code and tests.
+6. Leave unaffected pages unchanged.
+7. Update verification metadata only after evidence is checked.
+8. Report pages that may be stale but cannot be verified.
 
-Do not rewrite the whole Atlas for cosmetic consistency.
+Treat the script's `review` status as a prompt for human/AI verification, not proof that a page is wrong. Do not rewrite the whole Atlas for cosmetic consistency.
 
 ## Assess maintenance readiness
 
@@ -254,6 +257,7 @@ The goal is not for the human to match AI retrieval speed. The goal is for the h
 ## Resource routing
 
 - Run `scripts/repo_inventory.py` for a read-only structural snapshot.
+- Run `scripts/atlas_freshness.py` to compare Atlas verification commits and declared evidence paths with current Git HEAD.
 - Read `references/atlas-schema.md` for Atlas structure, evidence headers, and flow selection.
 - Read `references/change-brief.md` for change-impact analysis.
 - Read `references/competency-rubric.md` for teach-back and readiness assessment.

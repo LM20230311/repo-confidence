@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Enforcement symbols and tests
+> Evidence paths: `path/to/enforcement`, `path/to/regression/test`
 > Known gaps: List explicitly
 
 | Invariant | Severity | Enforced by | Verified by | Recovery if broken |

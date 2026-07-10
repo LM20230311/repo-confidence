@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Critical flows, incidents, tests, migrations, and configuration
+> Evidence paths: `path/to/high-risk/code`, `path/to/control/test`
 > Known gaps: List explicitly
 
 | Domain | Risk | Likelihood | Impact | Existing control | Missing control |

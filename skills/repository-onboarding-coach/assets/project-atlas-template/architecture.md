@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Stable modules and entrypoint wiring
+> Evidence paths: `path/to/bootstrap`, `path/to/router`
 > Known gaps: List explicitly
 
 ## Mental model

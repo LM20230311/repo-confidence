@@ -2,6 +2,7 @@
 
 > Status: Active register
 > Last reviewed commit: `<git-sha>`
+> Evidence paths: `path/to/relevant/evidence`
 
 | Question | Why it matters | Current evidence | Cheapest safe verification | Blocking? |
 |---|---|---|---|---|

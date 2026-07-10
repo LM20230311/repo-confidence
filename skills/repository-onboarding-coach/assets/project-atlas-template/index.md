@@ -3,6 +3,7 @@
 > Status: Draft
 > Last verified commit: `<git-sha>`
 > Evidence: Add stable source symbols, tests, migrations, or runtime evidence
+> Evidence paths: `path/to/entrypoint`, `path/to/critical/test`
 > Known gaps: List explicitly
 
 ## System in one paragraph

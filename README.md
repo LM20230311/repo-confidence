@@ -204,6 +204,28 @@ python3 skills/repository-onboarding-coach/scripts/repo_inventory.py /path/to/re
 
 脚本不会读取密钥内容，也不会修改目标仓库。
 
+### 检查项目地图是否可能过期
+
+当仓库已经有 Project Atlas 时，Skill 会先运行只读的新鲜度检查：
+
+```bash
+python3 skills/repository-onboarding-coach/scripts/atlas_freshness.py \
+  /path/to/repository \
+  --atlas docs/project-atlas \
+  --language zh
+```
+
+它比较页面的验证提交、显式声明的证据路径和当前 Git HEAD，输出：
+
+- `当前`：页面验证提交就是当前 HEAD；
+- `证据路径未变化`：代码有新提交，但该页面声明的证据文件未改变；
+- `需要复核`：至少一个证据文件发生变化；
+- `未声明证据路径`：无法自动判断，不会擅自猜测依赖；
+- `外部仓库证据`：页面刻意引用另一个仓库的提交。
+
+默认只报告，不阻断开发；只有显式增加 `--strict` 才会在存在待复核页面时
+返回失败状态。文件变化只是复核线索，不代表文档一定已经错误。
+
 ## 推荐的团队使用方式
 
 ### 新人入职

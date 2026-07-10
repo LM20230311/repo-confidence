@@ -3,6 +3,7 @@
 > Prepared against commit: `<git-sha>`
 > Risk: Low / Medium / High
 > Status: Draft / Confirmed / Implemented / Verified
+> Evidence paths: `path/to/affected/code`, `path/to/test`
 
 ## Goal and acceptance criteria
 

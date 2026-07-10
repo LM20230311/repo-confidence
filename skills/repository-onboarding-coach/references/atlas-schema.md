@@ -34,10 +34,16 @@ Every Atlas page must begin with metadata equivalent to:
 > Status: Verified | Partially verified | Draft
 > Last verified commit: `<git-sha>`
 > Evidence: `path:symbol`, `test`, `migration`
+> Evidence paths: `repository/relative/file`, `tests/relative/test_file`
 > Known gaps: short explicit list or `None known`
 ```
 
 Use stable symbol names when possible. Line numbers may be added for convenience but should not be the only locator.
+
+`Evidence` is the human-readable explanation. `Evidence paths` is the
+machine-readable, repository-relative file list used by the freshness checker.
+List only files that materially support the page. An omitted path is reported as
+unmapped rather than guessed.
 
 ## 3. Recommended structure
 
@@ -272,11 +278,28 @@ Lower-precedence evidence may explain intent but should not override current beh
 ## 7. Freshness rules
 
 - Record the verified commit on every critical page.
+- Record explicit repository-relative evidence paths for automatic comparison.
 - Compare changed symbols, not only changed filenames.
 - Re-verify affected flows after behavior changes.
 - Do not update the verified commit on untouched pages without checking them.
 - Mark stale pages explicitly when verification is incomplete.
 - Keep generated indexes separate from human-confirmed invariants.
+
+Use `scripts/atlas_freshness.py <repo> --atlas docs/project-atlas` for the
+deterministic first pass. Its statuses mean:
+
+| Status | Meaning |
+|---|---|
+| `current` | Page verification commit equals current HEAD |
+| `unchanged_evidence` | HEAD advanced but declared evidence files did not change |
+| `review` | One or more declared evidence files changed |
+| `unmapped` | HEAD advanced but the page declares no evidence paths |
+| `diverged` | Verification commit is not an ancestor of HEAD |
+| `unverified` / `unknown_commit` | Verification metadata cannot be trusted |
+| `external` | The page intentionally points at another repository's commit |
+
+The checker identifies candidates; it does not prove semantic freshness. Use
+CodeGraph, source, tests and history before updating the verified commit.
 
 ## 8. Quality checks
 
