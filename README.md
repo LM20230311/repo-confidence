@@ -2,6 +2,12 @@
 
 > Understand unfamiliar repositories. Change them safely. Grow into ownership—with AI, not behind it.
 
+[![GitHub stars](https://img.shields.io/github/stars/LM20230311/repo-confidence?style=social)](https://github.com/LM20230311/repo-confidence/stargazers)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827.svg)](skills/repository-onboarding-coach/SKILL.md)
+
+Repo Confidence is an open-source methodology and collection of AI agent skills for repository onboarding, codebase understanding, change-impact analysis, and growing developers into confident software maintainers.
+
 **Repo Confidence** 是一个面向 AI 时代的软件项目接手、开发与维护方法论和工具集。它帮助开发者在 AI 与 CodeGraph 等代码理解工具的辅助下，快速进入陌生仓库，同时持续建立对系统行为、改动影响和维护风险的真实信心。
 
 我们的目标不是让 AI 更快地替人写代码，而是让人能够理解 AI 为什么这样修改、知道可能影响什么、能够验证结果，并最终对项目负责。
