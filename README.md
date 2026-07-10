@@ -134,6 +134,10 @@ skills/repository-onboarding-coach
 
 方法论本身不依赖某一个 AI 产品。Codex Skill 是第一种参考实现，后续可以扩展到更多 Agent 和开发工具。
 
+## 公开仓库案例
+
+- [New API Project Atlas](examples/new-api/project-atlas/index.md)：基于固定上游提交的首个完整案例，覆盖令牌鉴权、模型转发、渠道路由、计费、渠道管理和异步任务六条核心链路。
+
 ## 快速开始
 
 ### 安装 Skill
@@ -264,6 +268,7 @@ repo-confidence/
 - [x] 发布 `repository-onboarding-coach` Skill MVP；
 - [x] 提供通用 Project Atlas 模板；
 - [x] 提供只读仓库盘点脚本；
+- [x] 提供第一个公开 Project Atlas 完整案例；
 - [ ] 支持 Project Atlas 增量刷新与过期检测；
 - [ ] 支持基于真实需求的交互式训练模式；
 - [ ] 提供多语言、多框架专项分析包；
