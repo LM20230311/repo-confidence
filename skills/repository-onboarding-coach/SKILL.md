@@ -1,6 +1,6 @@
 ---
 name: repository-onboarding-coach
-description: Analyze unfamiliar repositories and turn code evidence into durable human maintenance confidence. Use when onboarding a developer, taking over a repository, creating or refreshing a project atlas, tracing a business flow, preparing a change-impact brief, teaching someone to maintain a codebase, assessing maintenance readiness, or reducing uncertainty before AI-assisted code changes.
+description: Analyze unfamiliar repositories and turn code evidence into durable human maintenance confidence. Use when onboarding a developer, taking over a repository, creating or refreshing a project atlas, tracing a business flow, preparing a change-impact brief, teaching someone to maintain a codebase, assessing maintenance readiness, reducing uncertainty before AI-assisted changes, or adding confidence alongside normal development without changing the existing workflow.
 ---
 
 # Repository Onboarding Coach
@@ -13,13 +13,28 @@ Choose the smallest mode that satisfies the request:
 
 | Mode | Use when | Primary output |
 |---|---|---|
+| `ambient` | Normal AI-assisted work should continue without a new process | Concise impact, risk and verification context |
 | `bootstrap` | The repository or team is unfamiliar | Project Atlas |
 | `learn` | The user wants to understand a domain or flow | Flow Card + teach-back |
 | `change-prep` | A requirement may lead to code changes | Change Brief |
 | `refresh` | An Atlas already exists and code changed | Incremental evidence refresh |
 | `readiness` | The user wants to know what they can safely maintain | Competency assessment |
 
-Combine modes only when the user clearly needs them. Do not generate a full Atlas for a narrow code question.
+Default to `ambient` for ordinary requirements. Use `bootstrap`, `learn`, `refresh`, or `readiness` when the user explicitly asks for those outcomes or the repository is the task itself. Combine modes only when the user clearly needs them. Do not generate a full Atlas for a narrow code question.
+
+## Work alongside the existing workflow
+
+In `ambient` mode:
+
+1. Analyze only the requirement's likely path and adjacent risks.
+2. Do not create Atlas files, install hooks, change CI, or introduce forms unless the user asks.
+3. Before editing, share at most a compact summary of affected flow, state/cache impact, risk and intended verification when it materially helps.
+4. Continue low-risk and reversible work without pausing for teach-back or document approval.
+5. Pause only when a missing decision changes security, billing, destructive data behavior, compatibility, or another high-impact invariant.
+6. After editing, compare predicted and actual impact, run proportional checks, and report unexpected scope or unresolved risk.
+7. Do not quiz the user unless they explicitly request learning or readiness coaching.
+
+Treat confidence as a sidecar to delivery, not a replacement workflow.
 
 ## Start with repository evidence
 

@@ -140,9 +140,14 @@ skills/repository-onboarding-coach
 
 ## 快速开始
 
+第一次使用建议先阅读：[中文上手指南](docs/getting-started.zh-CN.md)。
+
 ### 安装 Skill
 
-将 Skill 复制到 Codex Skills 目录：
+可以直接让 Codex 从 GitHub 仓库 `LM20230311/repo-confidence` 的
+`skills/repository-onboarding-coach` 路径安装。
+
+也可以将 Skill 从本地仓库复制到 Codex Skills 目录：
 
 ```bash
 cp -R skills/repository-onboarding-coach \
@@ -153,6 +158,13 @@ cp -R skills/repository-onboarding-coach \
 
 ```text
 使用 $repository-onboarding-coach 帮我建立这个仓库的 Project Atlas。
+```
+
+日常需求推荐使用不改变原有流程的 `ambient` 模式：
+
+```text
+使用 $repository-onboarding-coach，以 ambient 模式完成这个需求。
+低风险直接继续，只简要说明影响、风险和验证；高风险决策再暂停。
 ```
 
 也可以针对具体目标调用：
@@ -242,6 +254,7 @@ repo-confidence/
 ├── LICENSE
 ├── docs/
 │   ├── methodology.md
+│   ├── getting-started.zh-CN.md
 │   └── roadmap.md
 └── skills/
     └── repository-onboarding-coach/
