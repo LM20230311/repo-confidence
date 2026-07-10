@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repository Onboarding Coach"
+  short_description: "Build confidence in unfamiliar codebases"
+  default_prompt: "Use $repository-onboarding-coach to map this repository, explain its critical flows, and coach me toward safe maintenance."
