@@ -20,6 +20,9 @@ It focuses on six high-value flows:
 5. channel administration and cache refresh;
 6. asynchronous media task polling and final settlement.
 
+It also includes a maintainer-oriented billing deep dive and a concrete change
+simulation for adding a token-specific billing multiplier.
+
 Start with the [Project Atlas](project-atlas/index.md).
 
 ## Verification performed

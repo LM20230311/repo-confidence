@@ -49,6 +49,11 @@ flowchart LR
 | [Channel administration](flows/channel-admin-cache.md) | Mutates credentials, abilities and runtime routing state | Verified for selected backend tests |
 | [Asynchronous tasks](flows/async-task.md) | Spans request, polling, CAS transition, refund and settlement | Verified for selected backend tests |
 
+## Maintainer deep dives
+
+- [Billing maintainer guide](learning/billing-maintainer-guide.md): pricing modes, snapshots, funding state machine, failure windows and teach-back questions.
+- [Change Brief: token-specific billing multiplier](change-briefs/token-billing-multiplier.md): a realistic high-risk requirement traced across persistence, cache, synchronous relay, tiered pricing, async tasks, logs and tests.
+
 ## High-risk domains
 
 - Billing and quota arithmetic across wallet, subscription and token balances;
