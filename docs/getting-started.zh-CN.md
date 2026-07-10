@@ -1,6 +1,44 @@
 # Repo Confidence 中文上手指南
 
-## 你实际怎么使用它
+## 先记住一句话
+
+**Repo Confidence 不是一个需要运行的命令行程序。**
+
+它是安装在 Codex 里的能力包。安装一次后，你只需要在想了解的目标仓库中
+新建一个 Codex 任务，并在需求里写出 `$repository-onboarding-coach`。
+
+## 你现在怎么马上体验
+
+如果 Skill 已经安装完成，只做下面三步：
+
+1. 用 Codex 打开你真正想了解的仓库，例如你的业务项目或一个开源项目；
+2. 在这个仓库里**新建一个 Codex 任务**；
+3. 复制下面这句话发送：
+
+```text
+使用 $repository-onboarding-coach，请全程用中文帮我快速接手当前仓库。
+先只读分析，不修改代码。先给我一页项目总览，再告诉我最重要的 5 条业务链路、
+数据和缓存在哪里、哪些地方风险最高，以及我下一步应该先学什么。
+```
+
+你不需要先选择模式，不需要运行 Python，也不需要创建文档目录。
+
+预期会得到：
+
+```text
+项目是做什么的
+→ 核心模块和业务名词
+→ 5 条关键链路
+→ 数据库、缓存和外部服务
+→ 高风险区域
+→ 已确认、推断和未知内容
+→ 建议的学习顺序
+```
+
+> 如果输入 `$repository-onboarding-coach` 时没有出现在 Skill 候选中，请新建
+> Codex 任务或重新打开 Codex。安装前已经存在的长任务可能不会重新加载 Skill。
+
+## 它实际是怎么工作的
 
 Repo Confidence 当前最直接的使用方式，是把
 `repository-onboarding-coach` 安装成 Codex Skill，然后像平时一样在目标
@@ -10,7 +48,7 @@ Repo Confidence 当前最直接的使用方式，是把
 你可以显式输入 `$repository-onboarding-coach`，让 Codex 在正常工作的同时
 补充项目理解、改动影响、风险和验证证据。
 
-## 第一步：安装
+## 其他用户第一次安装
 
 ### 让 Codex 安装
 
@@ -38,7 +76,7 @@ cp -R skills/repository-onboarding-coach \
 ~/.codex/skills/repository-onboarding-coach
 ```
 
-## 第二步：在目标仓库打开 Codex
+## 在目标仓库打开 Codex
 
 进入你真正要了解或维护的仓库，不需要在 Repo Confidence 项目目录里运行。
 
@@ -50,7 +88,7 @@ cd /path/to/your-project
 
 然后正常打开一个 Codex 任务。Skill 会分析当前工作区中的仓库。
 
-## 第三步：按场景使用
+## 熟悉以后再按场景使用
 
 ### 场景一：第一次进入陌生仓库
 
@@ -141,7 +179,7 @@ Skill 只在旁边补充：
 
 如果你想先体验成品，不需要重新分析 New API，可以按这个顺序阅读：
 
-1. [Project Atlas 总览](../examples/new-api/project-atlas/index.md)
+1. [Project Atlas 中文总览](../examples/new-api/project-atlas/index.zh-CN.md)
 2. [架构地图](../examples/new-api/project-atlas/architecture.md)
 3. [同步模型转发链路](../examples/new-api/project-atlas/flows/relay-request.md)
 4. [计费生命周期](../examples/new-api/project-atlas/flows/billing-lifecycle.md)

@@ -136,11 +136,26 @@ skills/repository-onboarding-coach
 
 ## 公开仓库案例
 
-- [New API Project Atlas](examples/new-api/project-atlas/index.md)：基于固定上游提交的首个完整案例，覆盖令牌鉴权、模型转发、渠道路由、计费、渠道管理和异步任务六条核心链路。
+- [New API 项目地图（中文）](examples/new-api/project-atlas/index.zh-CN.md)：基于固定上游提交的首个完整案例，覆盖令牌鉴权、模型转发、渠道路由、计费、渠道管理和异步任务六条核心链路。
+- [New API Project Atlas (English)](examples/new-api/project-atlas/index.md)
 
-## 快速开始
+## 30 秒开始使用
 
-第一次使用建议先阅读：[中文上手指南](docs/getting-started.zh-CN.md)。
+Repo Confidence 当前不是一个需要单独运行的命令行程序，而是安装到 Codex
+中的 Skill。
+
+安装后，在你想了解的目标仓库中**新建一个 Codex 任务**，发送：
+
+```text
+使用 $repository-onboarding-coach，请全程用中文帮我快速接手当前仓库。
+先只读分析，不修改代码。给我一页项目总览、5 条关键链路、数据与缓存位置、
+高风险区域和下一步学习建议。
+```
+
+就这么用。第一次不需要理解 `bootstrap`、`ambient`、Flow Card 或 Change
+Brief；这些能力会在后续真实需求中按需使用。
+
+更完整的步骤和提示词见：[中文上手指南](docs/getting-started.zh-CN.md)。
 
 ### 安装 Skill
 

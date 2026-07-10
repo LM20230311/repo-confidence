@@ -1,4 +1,4 @@
 interface:
-  display_name: "Repository Onboarding Coach"
-  short_description: "Build confidence without changing your workflow"
-  default_prompt: "Use $repository-onboarding-coach in ambient mode to analyze impact, preserve my workflow, implement safely, and verify the result."
+  display_name: "仓库接手与维护教练"
+  short_description: "在不改变现有开发流程的情况下建立可验证的项目维护信心"
+  default_prompt: "使用 $repository-onboarding-coach，请全程用中文分析当前仓库或需求，保持现有开发流程，并给出影响、风险和验证证据。"

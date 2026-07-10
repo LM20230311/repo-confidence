@@ -7,6 +7,13 @@ description: Analyze unfamiliar repositories and turn code evidence into durable
 
 Build a durable mental model and evidence-backed maintenance system for the current repository. Optimize for human understanding, safe change ownership, and calibrated confidence—not maximum document volume.
 
+## Match the user's language
+
+Write explanations and generated artifacts in the user's language. When the user
+writes Chinese, default to Simplified Chinese. Keep code symbols, paths, API
+names and commands unchanged. Render evidence labels as `已验证（Verified）`,
+`推断（Inferred）` and `未知（Unknown）` when using Chinese.
+
 ## Select a mode
 
 Choose the smallest mode that satisfies the request:
