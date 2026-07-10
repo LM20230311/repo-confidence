@@ -180,11 +180,11 @@ Skill 只在旁边补充：
 如果你想先体验成品，不需要重新分析 New API，可以按这个顺序阅读：
 
 1. [Project Atlas 中文总览](../examples/new-api/project-atlas/index.zh-CN.md)
-2. [架构地图](../examples/new-api/project-atlas/architecture.md)
-3. [同步模型转发链路](../examples/new-api/project-atlas/flows/relay-request.md)
-4. [计费生命周期](../examples/new-api/project-atlas/flows/billing-lifecycle.md)
-5. [计费维护者指南](../examples/new-api/project-atlas/learning/billing-maintainer-guide.md)
-6. [Token 倍率 Change Brief](../examples/new-api/project-atlas/change-briefs/token-billing-multiplier.md)
+2. [架构地图](../examples/new-api/project-atlas/architecture.zh-CN.md)
+3. [同步模型转发链路](../examples/new-api/project-atlas/flows/relay-request.zh-CN.md)
+4. [计费生命周期](../examples/new-api/project-atlas/flows/billing-lifecycle.zh-CN.md)
+5. [计费维护者指南](../examples/new-api/project-atlas/learning/billing-maintainer-guide.zh-CN.md)
+6. [Token 倍率 Change Brief](../examples/new-api/project-atlas/change-briefs/token-billing-multiplier.zh-CN.md)
 
 也可以在 Repo Confidence 仓库中说：
 

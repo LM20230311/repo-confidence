@@ -1,5 +1,7 @@
 # Billing Maintainer Guide
 
+> [中文版本](billing-maintainer-guide.zh-CN.md)
+
 > Status: Partially verified
 > Last verified commit: [`4e570389`](https://github.com/QuantumNous/new-api/tree/4e570389dd433a717373ce9c9b822b59f5ed3d5d)
 > Evidence: [E6, E10, E11, E13, E18, E19 and E20](../evidence.md), selected backend tests

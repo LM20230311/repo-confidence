@@ -1,5 +1,7 @@
 # Flow: Quota Pre-consume, Settlement and Refund
 
+> [中文版本](billing-lifecycle.zh-CN.md)
+
 > Status: Verified for selected backend behavior
 > Last verified commit: [`4e570389`](https://github.com/QuantumNous/new-api/tree/4e570389dd433a717373ce9c9b822b59f5ed3d5d)
 > Evidence: [E10, E11, E13](../evidence.md), executed quota/billing tests

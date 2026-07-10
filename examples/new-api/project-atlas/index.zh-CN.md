@@ -7,6 +7,14 @@
 >
 > [English version](index.md)
 
+## 从这里开始
+
+- [架构地图](architecture.zh-CN.md)
+- [同步模型转发链路](flows/relay-request.zh-CN.md)
+- [额度预扣、结算与退款](flows/billing-lifecycle.zh-CN.md)
+- [计费维护指南](learning/billing-maintainer-guide.zh-CN.md)
+- [Token 专属计费倍率影响单](change-briefs/token-billing-multiplier.zh-CN.md)
+
 ## 一句话理解
 
 New API 是一个自托管的 AI API 网关和运营管理平台。它接收 OpenAI、Claude、
@@ -52,14 +60,14 @@ flowchart LR
 | 链路 | 为什么重要 | 当前状态 |
 |---|---|---|
 | [API Token 鉴权](flows/token-auth.md) | 决定用户、分组、额度、IP 和模型权限 | 部分验证 |
-| [同步模型转发](flows/relay-request.md) | 最核心的 API 兼容和收入链路 | 部分验证 |
+| [同步模型转发](flows/relay-request.zh-CN.md) | 最核心的 API 兼容和收入链路 | 部分验证 |
 | [渠道路由与重试](flows/channel-routing-retry.md) | 决定可用性、成本和故障切换 | 部分验证 |
-| [计费生命周期](flows/billing-lifecycle.md) | 保护钱包、订阅和 Token 额度一致性 | 后端测试已验证 |
+| [计费生命周期](flows/billing-lifecycle.zh-CN.md) | 保护钱包、订阅和 Token 额度一致性 | 后端测试已验证 |
 | [渠道管理与缓存](flows/channel-admin-cache.md) | 修改凭证、能力和运行时路由状态 | 后端测试已验证 |
 | [异步任务](flows/async-task.md) | 跨越提交、轮询、CAS、退款和结算 | 后端测试已验证 |
 
-链接页面目前保留英文原始案例；通过 Skill 学习时，直接要求“全程用中文”即可
-得到中文讲解。后续会按使用优先级逐步补充中文页面。
+架构、同步转发、计费和倍率需求已经提供中文页面。其他链路暂时保留英文证据
+卡片；通过 Skill 学习时，直接要求“全程用中文”即可得到中文讲解。
 
 ## 最值得先学习的三个部分
 
@@ -82,9 +90,9 @@ flowchart LR
 
 深入阅读：
 
-- [计费生命周期](flows/billing-lifecycle.md)
-- [计费维护指南](learning/billing-maintainer-guide.md)
-- [Token 专属倍率需求推演](change-briefs/token-billing-multiplier.md)
+- [计费生命周期](flows/billing-lifecycle.zh-CN.md)
+- [计费维护指南](learning/billing-maintainer-guide.zh-CN.md)
+- [Token 专属倍率需求推演](change-briefs/token-billing-multiplier.zh-CN.md)
 
 ### 3. 异步任务需要持久化计费上下文
 

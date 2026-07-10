@@ -1,5 +1,7 @@
 # Architecture
 
+> [中文版本](architecture.zh-CN.md)
+
 > Status: Partially verified
 > Last verified commit: [`4e570389`](https://github.com/QuantumNous/new-api/tree/4e570389dd433a717373ce9c9b822b59f5ed3d5d)
 > Evidence: [E1, E2, E5-E10, E13-E16](evidence.md)

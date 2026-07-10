@@ -1,5 +1,7 @@
 # Change Brief: Token-specific Billing Multiplier
 
+> [中文版本](token-billing-multiplier.zh-CN.md)
+
 > Prepared against commit: [`4e570389`](https://github.com/QuantumNous/new-api/tree/4e570389dd433a717373ce9c9b822b59f5ed3d5d)
 > Risk: High
 > Status: Analysis only; no upstream implementation

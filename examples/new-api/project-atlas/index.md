@@ -1,5 +1,7 @@
 # New API Project Atlas
 
+> [中文版本](index.zh-CN.md)
+
 > Status: Partially verified
 > Last verified commit: [`4e570389`](https://github.com/QuantumNous/new-api/tree/4e570389dd433a717373ce9c9b822b59f5ed3d5d)
 > Evidence: [Evidence index](evidence.md), selected backend tests, upstream repository instructions
