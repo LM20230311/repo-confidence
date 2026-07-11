@@ -9,11 +9,8 @@
 
 ## 核心心智模型
 
-后端稳定的依赖方向是：
-
-```text
-router → middleware/controller → service → model
-```
+后端稳定的依赖方向是
+`router → middleware/controller → service → model`。
 
 `relay` 是由转发控制器调用的协议执行子系统。Gin Context 在这些层之间传递
 请求级身份、选中渠道、价格快照、重试状态和日志信息。
