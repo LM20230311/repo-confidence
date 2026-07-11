@@ -48,10 +48,11 @@ Treat confidence as a sidecar to delivery, not a replacement workflow.
 1. Read all applicable repository instructions such as `AGENTS.md`, `CONTRIBUTING.md`, and local policy files.
 2. Inspect Git status, current branch, HEAD, repository root, and recent history. Preserve user changes.
 3. Run `scripts/repo_inventory.py <repo> --summary` for a deterministic, context-bounded structural inventory when Python 3 is available. Request the full lists only when a summary category needs deeper inspection.
-4. If `.codegraph/` exists, use CodeGraph before grep or manual file reading to locate symbols and critical paths.
-5. Inspect actual entrypoints, routing or job registration, persistence models, migrations, caches, external clients, configuration, and tests.
-6. Prefer current code and executable tests over stale documentation. Use Git history to explain non-obvious decisions when necessary.
-7. Never expose credentials, private customer data, production secrets, or sensitive repository content in generated artifacts.
+4. For repository onboarding or flow discovery, run `scripts/evidence_manifest.py <repo> --summary`. Use its registrations and relations as investigation candidates, never as a verified runtime call graph.
+5. If `.codegraph/` exists, use CodeGraph before grep or manual file reading to locate symbols and critical paths.
+6. Inspect actual entrypoints, routing or job registration, persistence models, migrations, caches, external clients, configuration, and tests.
+7. Prefer current code and executable tests over stale documentation. Use Git history to explain non-obvious decisions when necessary.
+8. Never expose credentials, private customer data, production secrets, or sensitive repository content in generated artifacts.
 
 ## Apply the evidence model
 
@@ -72,7 +73,7 @@ For every high-impact claim, record:
 
 Do not hide uncertainty behind fluent prose. Convert uncertainty into an explicit known-unknown item.
 
-Read `references/atlas-schema.md` when creating or refreshing an Atlas. Read `references/change-brief.md` before analyzing a concrete change. Read `references/competency-rubric.md` before coaching or assessing a developer.
+Read `references/evidence-manifest.md` before treating generated flow candidates as evidence. Read `references/atlas-schema.md` when creating or refreshing an Atlas. Read `references/change-brief.md` before analyzing a concrete change. Read `references/competency-rubric.md` before coaching or assessing a developer.
 
 ## Bootstrap a Project Atlas
 
@@ -100,6 +101,10 @@ Identify the smallest stable vocabulary that explains the system:
 Do not create a file-by-file summary. Group code by responsibility and business capability.
 
 ### 3. Select critical flows
+
+Start from explicit registrations in the Evidence Manifest, then verify candidates
+with CodeGraph, implementation, callers or consumers, tests, and runtime evidence.
+Do not confuse the manifest's discovery score with business criticality.
 
 Rank flow candidates using:
 
@@ -257,7 +262,9 @@ The goal is not for the human to match AI retrieval speed. The goal is for the h
 ## Resource routing
 
 - Run `scripts/repo_inventory.py` for a read-only structural snapshot.
+- Run `scripts/evidence_manifest.py` to connect source candidates with static registrations, nearby tests, migrations, and ranked investigation starting points.
 - Run `scripts/atlas_freshness.py` to compare Atlas verification commits and declared evidence paths with current Git HEAD.
+- Read `references/evidence-manifest.md` for the manifest schema and confidence boundaries.
 - Read `references/atlas-schema.md` for Atlas structure, evidence headers, and flow selection.
 - Read `references/change-brief.md` for change-impact analysis.
 - Read `references/competency-rubric.md` for teach-back and readiness assessment.

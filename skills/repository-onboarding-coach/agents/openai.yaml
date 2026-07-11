@@ -1,4 +1,4 @@
 interface:
   display_name: "仓库接手与维护教练"
-  short_description: "在不改变现有开发流程的情况下建立可验证的项目维护信心"
-  default_prompt: "使用 $repository-onboarding-coach，请全程用中文对当前仓库做精简盘点，分析需求影响，检查项目地图新鲜度，并给出风险和验证证据。"
+  short_description: "用标准证据清单和风险分析建立可验证、可持续的项目维护信心"
+  default_prompt: "使用 $repository-onboarding-coach，请全程用中文对当前仓库做精简盘点，生成证据清单和关键链路候选，并给出风险与验证边界。"

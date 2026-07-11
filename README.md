@@ -130,7 +130,8 @@ skills/repository-onboarding-coach
 3. 深入解释指定业务链路；
 4. 在修改前生成 Change Brief；
 5. 通过主动复述和需求推演训练新人；
-6. 评估开发者当前能够安全承担的维护范围。
+6. 评估开发者当前能够安全承担的维护范围；
+7. 生成标准化 Evidence Manifest，给出可核验的链路调查起点。
 
 方法论本身不依赖某一个 AI 产品。Codex Skill 是第一种参考实现，后续可以扩展到更多 Agent 和开发工具。
 
@@ -213,6 +214,25 @@ python3 skills/repository-onboarding-coach/scripts/repo_inventory.py \
 ```
 
 脚本不会读取密钥内容，也不会修改目标仓库。
+
+### 生成 Evidence Manifest
+
+第一次接手仓库时，可以在结构盘点之后生成证据清单：
+
+```bash
+python3 skills/repository-onboarding-coach/scripts/evidence_manifest.py \
+  /path/to/repository \
+  --summary \
+  --max-items 20
+```
+
+它把入口、路由、后台任务和持久化候选，与静态注册、相关测试和迁移候选
+连接起来，并给出下一步值得调查的链路起点。当前语义提取优先支持
+Python/Django/DRF/Huey/Celery 风格代码；其他语言仍会保留路径级证据，交给
+CodeGraph 或后续专项分析。
+
+Evidence Manifest 不会复制函数体或配置值，也不会把静态语法冒充真实调用链。
+其中的测试、迁移关联和链路分数都必须由 AI 或开发者继续核实。
 
 ### 检查项目地图是否可能过期
 
@@ -328,8 +348,9 @@ repo-confidence/
 - [x] 发布 `repository-onboarding-coach` Skill MVP；
 - [x] 提供通用 Project Atlas 模板；
 - [x] 提供只读仓库盘点脚本；
+- [x] 提供标准化 Evidence Manifest 和 Python 语义候选发现；
 - [x] 提供第一个公开 Project Atlas 完整案例；
-- [ ] 支持 Project Atlas 增量刷新与过期检测；
+- [x] 支持 Project Atlas 初步增量刷新与过期检测；
 - [ ] 支持基于真实需求的交互式训练模式；
 - [ ] 提供多语言、多框架专项分析包；
 - [ ] 提供团队级能力矩阵与 onboarding dashboard；
