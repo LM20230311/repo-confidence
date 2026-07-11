@@ -47,7 +47,7 @@ Treat confidence as a sidecar to delivery, not a replacement workflow.
 
 1. Read all applicable repository instructions such as `AGENTS.md`, `CONTRIBUTING.md`, and local policy files.
 2. Inspect Git status, current branch, HEAD, repository root, and recent history. Preserve user changes.
-3. Run `scripts/repo_inventory.py <repo>` for a deterministic structural inventory when Python 3 is available.
+3. Run `scripts/repo_inventory.py <repo> --summary` for a deterministic, context-bounded structural inventory when Python 3 is available. Request the full lists only when a summary category needs deeper inspection.
 4. If `.codegraph/` exists, use CodeGraph before grep or manual file reading to locate symbols and critical paths.
 5. Inspect actual entrypoints, routing or job registration, persistence models, migrations, caches, external clients, configuration, and tests.
 6. Prefer current code and executable tests over stale documentation. Use Git history to explain non-obvious decisions when necessary.

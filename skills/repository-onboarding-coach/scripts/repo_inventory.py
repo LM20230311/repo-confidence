@@ -82,6 +82,68 @@ ENTRYPOINT_NAMES = {
     "main.php",
 }
 
+ROUTE_NAMES = {
+    "urls.py",
+    "routing.py",
+    "routes.py",
+    "routes.go",
+    "router.py",
+    "router.go",
+    "api-router.ts",
+    "api-router.js",
+}
+
+WORKER_NAMES = {
+    "tasks.py",
+    "jobs.py",
+    "worker.py",
+    "workers.py",
+    "celery.py",
+    "consumer.py",
+    "consumers.py",
+}
+
+PERSISTENCE_NAMES = {
+    "models.py",
+    "schema.py",
+    "schema.prisma",
+    "schema.sql",
+    "entities.py",
+}
+
+TEST_SOURCE_SUFFIXES = {
+    ".go",
+    ".py",
+    ".js",
+    ".jsx",
+    ".mjs",
+    ".cjs",
+    ".ts",
+    ".tsx",
+    ".java",
+    ".kt",
+    ".kts",
+    ".rs",
+    ".rb",
+    ".php",
+    ".cs",
+    ".sh",
+    ".sql",
+}
+
+VERBOSE_LIST_FIELDS = (
+    "instruction_files",
+    "manifests_and_build_files",
+    "entrypoint_candidates",
+    "route_candidates",
+    "worker_candidates",
+    "persistence_candidates",
+    "test_files",
+    "migration_files",
+    "ci_files",
+    "documentation_candidates",
+)
+
 LANGUAGE_BY_SUFFIX = {
     ".go": "Go",
     ".py": "Python",
@@ -178,9 +240,11 @@ def filesystem_file_list(root: Path) -> list[str]:
 def is_test_file(path: str) -> bool:
     lowered = path.lower()
     name = Path(path).name.lower()
+    suffix = Path(path).suffix.lower()
+    in_test_directory = "/test/" in f"/{lowered}" or "/tests/" in f"/{lowered}"
     return (
-        "/test/" in f"/{lowered}"
-        or "/tests/" in f"/{lowered}"
+        in_test_directory
+        and suffix in TEST_SOURCE_SUFFIXES
         or name.endswith("_test.go")
         or name.startswith("test_") and name.endswith(".py")
         or ".test." in name
@@ -205,6 +269,25 @@ def is_ci_file(path: str) -> bool:
     )
 
 
+def is_route_candidate(path: str) -> bool:
+    name = Path(path).name.lower()
+    return name in ROUTE_NAMES or name.startswith(("routes.", "router."))
+
+
+def is_worker_candidate(path: str) -> bool:
+    name = Path(path).name.lower()
+    suffix = Path(path).suffix.lower()
+    parts = {part.lower() for part in Path(path).parts[:-1]}
+    return name in WORKER_NAMES or (
+        bool(parts & {"jobs", "tasks", "workers"}) and suffix in TEST_SOURCE_SUFFIXES
+    )
+
+
+def is_persistence_candidate(path: str) -> bool:
+    name = Path(path).name.lower()
+    return name in PERSISTENCE_NAMES
+
+
 def language_counts(files: list[str]) -> dict[str, int]:
     counts: Counter[str] = Counter()
     for path in files:
@@ -223,6 +306,20 @@ def top_level_entries(root: Path) -> list[str]:
         return sorted(path.name for path in root.iterdir() if path.name != ".git")
     except OSError:
         return []
+
+
+def summarize_inventory(inventory: dict[str, object], max_items: int) -> dict[str, object]:
+    """Return a JSON-safe copy with verbose path lists capped for AI context."""
+    summary = json.loads(json.dumps(inventory, ensure_ascii=False))
+    truncated: dict[str, dict[str, int]] = {}
+    for field in VERBOSE_LIST_FIELDS:
+        value = summary.get(field)
+        if not isinstance(value, list) or len(value) <= max_items:
+            continue
+        truncated[field] = {"shown": max_items, "total": len(value)}
+        summary[field] = value[:max_items]
+    summary["truncated_lists"] = truncated
+    return summary
 
 
 def build_inventory(root: Path) -> dict[str, object]:
@@ -256,11 +353,14 @@ def build_inventory(root: Path) -> dict[str, object]:
         or path.startswith("cmd/") and Path(path).name.endswith((".go", ".py", ".rs"))
         or path.startswith("bin/")
     ]
+    routes = [path for path in files if is_route_candidate(path)]
+    workers = [path for path in files if is_worker_candidate(path)]
+    persistence = [path for path in files if is_persistence_candidate(path)]
     tests = [path for path in files if is_test_file(path)]
     migrations = [path for path in files if is_migration_file(path)]
     ci_files = [path for path in files if is_ci_file(path)]
 
-    return {
+    inventory: dict[str, object] = {
         "repository": {
             "requested_path": str(root),
             "resolved_path": str(root.resolve()),
@@ -282,6 +382,9 @@ def build_inventory(root: Path) -> dict[str, object]:
         "instruction_files": sorted(instructions),
         "manifests_and_build_files": sorted(manifests),
         "entrypoint_candidates": sorted(entrypoints),
+        "route_candidates": sorted(routes),
+        "worker_candidates": sorted(workers),
+        "persistence_candidates": sorted(persistence),
         "test_files": sorted(tests),
         "migration_files": sorted(migrations),
         "ci_files": sorted(ci_files),
@@ -291,8 +394,16 @@ def build_inventory(root: Path) -> dict[str, object]:
             "Inspect repository instructions before reading or changing code.",
             "Use CodeGraph first when codegraph_index_present is true and local policy requires it.",
             "Treat entrypoints as candidates until verified from build or runtime configuration.",
+            "Route, worker, and persistence candidates are path-based hints, not framework proof.",
         ],
     }
+    inventory["path_counts"] = {
+        field: len(inventory[field])
+        for field in VERBOSE_LIST_FIELDS
+        if isinstance(inventory.get(field), list)
+    }
+    inventory["truncated_lists"] = {}
+    return inventory
 
 
 def parse_args() -> argparse.Namespace:
@@ -310,6 +421,17 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Emit compact JSON instead of indented JSON",
     )
+    parser.add_argument(
+        "--summary",
+        action="store_true",
+        help="Limit verbose path lists while preserving total counts",
+    )
+    parser.add_argument(
+        "--max-items",
+        type=int,
+        default=20,
+        help="Maximum items per verbose list in summary mode (default: 20)",
+    )
     return parser.parse_args()
 
 
@@ -319,8 +441,13 @@ def main() -> int:
     if not root.is_dir():
         print(f"error: repository path is not a directory: {root}", file=sys.stderr)
         return 2
+    if args.max_items <= 0:
+        print("error: --max-items must be greater than zero", file=sys.stderr)
+        return 2
 
     inventory = build_inventory(root)
+    if args.summary:
+        inventory = summarize_inventory(inventory, args.max_items)
     if args.compact:
         print(json.dumps(inventory, ensure_ascii=False, separators=(",", ":")))
     else:
